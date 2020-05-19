@@ -1,9 +1,3 @@
-# 1. R2 0.5 이하.
-# 2. Layer는 5개 이상.
-# 3. 노드의 갯수 10개 이상.
-# 4. batch_size 8이하.
-# 5. epochs 30이상.
-
 import numpy as np
 
 # 1. 데이터
@@ -17,42 +11,38 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, shuffle = False, train
 
 # 2. 모델구성
 
-from keras.models import Sequential
-from keras.layers import Dense
+from keras.models import Sequential, Model
+from keras.layers import Dense, Input
 
-model = Sequential()
-model.add(Dense(10, input_dim = 3))
-model.add(Dense(1000)) 
-model.add(Dense(1000)) 
-model.add(Dense(100)) 
-model.add(Dense(5)) 
-model.add(Dense(201)) 
-model.add(Dense(923)) 
-model.add(Dense(9)) 
-model.add(Dense(75)) 
-model.add(Dense(22)) 
-model.add(Dense(1000)) 
-model.add(Dense(82)) 
-model.add(Dense(923)) 
-model.add(Dense(125)) 
-model.add(Dense(250))
-model.add(Dense(1))
+input1 = Input(shape = (3, ))
+dense1 = Dense(10, activation = 'relu')(input1)
+dense3 = Dense(10, activation = 'relu')(dense1)
+dense6 = Dense(3, activation = 'relu')(dense3)
 
+output1 = Dense(3)(dense6)
+output2 = Dense(10)(output1)
+output3 = Dense(5)(output2)
+output1_3 = Dense(1)(output3)
+
+model = Model(inputs = input1, outputs = output1_3)
 # 3. 훈련
 
+from keras.callbacks import EarlyStopping
+early_stopping = EarlyStopping(monitor = 'loss', patience = 5, mode = 'auto')
+
 model.compile(loss = 'mse', optimizer = 'adam', metrics = ['mse'])
-model.fit(x_train, y_train, epochs = 238, batch_size = 8, validation_split = 0.25)
-# 
+model.fit(x_train, y_train, epochs = 100, batch_size = 1, validation_split = 0.25, callbacks = [early_stopping])
 
 # 4. 평가와 예측
 
-loss, mse = model.evaluate(x_test, y_test, batch_size = 8)
+loss, mse = model.evaluate(x_test, y_test, batch_size = 1)
 
 print("loss:", loss)
 print("mse:", mse)
 
+# y 예측값
 y_predict = model.predict(x_test)
-print(y_predict)
+print("y_predict: ", y_predict)
 
 # RMSE 구하기
 from sklearn.metrics import mean_squared_error

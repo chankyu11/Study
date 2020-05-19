@@ -58,6 +58,8 @@ output3_3 = Dense(2)(output3_2)
 
 model = Model(inputs = [input1, input2], outputs = [output1_3, output2_3, output3_3])
 
+
+
 model.summary()
 
 # 3. 훈련
