@@ -36,6 +36,7 @@ model = Sequential()
 model.add(LSTM(10, activation = 'relu', input_shape = (3,1)))
 # =LSTM(10)은 시작 노드가 10개라는 뜻
 # 4,3,1 인데 행은 무시 그렇기에 3,1 3개씩 잘라서, 1개씩 넣겠다는 의미
+# model.add(LSTM(10, input_length = 3, input_dim = 1))
 model.add(Dense(20))
 model.add(Dense(15))
 model.add(Dense(13))
@@ -49,15 +50,15 @@ model.summary()
 
 # 3. 실행
 
-# model.compile(optimizer = 'adam', loss = 'mse')
-# model.fit(x, y, epochs = 150, batch_size = 1)
+model.compile(optimizer = 'adam', loss = 'mse')
+model.fit(x, y, epochs = 150, batch_size = 1)
 
-# x_input = array([5,6,7])
-# print(x_input)
-# x_input = x_input.reshape(1,3,1)
-# print(x_input)
+x_input = array([5,6,7])
+print(x_input)
+x_input = x_input.reshape(1,3,1)
+print(x_input)
 
-# yhat = model.predict(x_input)
-# print(yhat)
+yhat = model.predict(x_input)
+print(yhat)
 
-# # 과제1 파라미터가 480까지 도달. 그 이유는 무엇인가?
+# 과제1 파라미터가 480까지 도달. 그 이유는 무엇인가?
