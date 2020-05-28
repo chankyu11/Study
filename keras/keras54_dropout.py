@@ -10,10 +10,10 @@ from keras.datasets import mnist
 # print('y_train: ', y_train[0])
 # print(y_train.shape)
 
-print(x_train.shape)
-print(x_test.shape)
-print(y_train.shape)
-print(y_test.shape)
+# print(x_train.shape)
+# print(x_test.shape)
+# print(y_train.shape)
+# print(y_test.shape)
 
 # print(x_train[0].shape)
 # plt.imshow(x_train[59999], 'gray')
@@ -54,7 +54,11 @@ print(y_test.shape)
 # model = Sequential()
 # model.add(Conv2D(50, (2,2), padding = 'same' ,input_shape = (28,28,1)))
 # # model.add(MaxPooling2D(3,3))
+# # model.add(Dropout(0.3))
+# # 노드에 20%를 제거하겠다는 의미. 그냥 코드를 수정해도 괜찮지만 수정안하고 노드 제거 방법.
 # model.add(Conv2D(150, (2,2), padding = 'same' ,input_shape = (28,28,1)))
+# model.add(Dropout(0.4))
+# # model.add(MaxPooling2D(3,3))
 # model.add(Conv2D(100, (2,2), padding = 'same' ,input_shape = (28,28,1)))
 # model.add(MaxPooling2D(2,2))
 # model.add(Conv2D(80, (2,2), padding = 'same' ,input_shape = (28,28,1)))
@@ -76,3 +80,12 @@ print(y_test.shape)
 # result = model.evaluate(x_test,y_test)
 # print('result:',result)
 
+# '''
+# Dropout 추가 전
+# result: [0.2904523947447538, 0.9144999980926514]
+
+# result: [0.037499357779330555, 0.9904000163078308]
+
+# batch_size = 55 result: [0.04971927969967023, 0.9876000285148621]
+# epochs = 15, batch_size =32 result: [0.039387194077148975, 0.9911999702453613]
+# '''
