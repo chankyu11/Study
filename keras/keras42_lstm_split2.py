@@ -53,39 +53,39 @@ print("=" * 40)
 print(x_train.shape)
 print(x_test.shape)
 
-# 2. 모델
+# # 2. 모델
 
-input1 = Input(shape = (4,1))
-dense1 = LSTM(10, activation= 'relu',return_sequences = True)(input1)
-dense2 = LSTM(10, activation= 'relu')(dense1)
-dense3 = Dense(5,activation='relu')(dense2)
+# input1 = Input(shape = (4,1))
+# dense1 = LSTM(10, activation= 'relu',return_sequences = True)(input1)
+# dense2 = LSTM(10, activation= 'relu')(dense1)
+# dense3 = Dense(5,activation='relu')(dense2)
 
-output1 = Dense(10)(dense3)
-output2 = Dense(5)(output1)
-output3 = Dense(1)(output2)
+# output1 = Dense(10)(dense3)
+# output2 = Dense(5)(output1)
+# output3 = Dense(1)(output2)
 
-model = Model(inputs = input1, outputs = output3)
+# model = Model(inputs = input1, outputs = output3)
 
-#3. 훈련
+# #3. 훈련
 
-from keras.callbacks import EarlyStopping
+# from keras.callbacks import EarlyStopping
 
-es = EarlyStopping(monitor='loss', patience= 10, mode = 'auto')
+# es = EarlyStopping(monitor='loss', patience= 10, mode = 'auto')
 
-# validation을 넣을 것.(train의 20%)
+# # validation을 넣을 것.(train의 20%)
 
-model.compile(loss = 'mse', optimizer='adam', metrics=['mse'])
-model.fit(x_train, y_train, epochs=100, batch_size=1, validation_split= 0.25 ,verbose=1, callbacks = [es])
+# model.compile(loss = 'mse', optimizer='adam', metrics=['mse'])
+# model.fit(x_train, y_train, epochs=100, batch_size=1, validation_split= 0.25 ,verbose=1, callbacks = [es])
 
-#4. 평가, 예측
+# #4. 평가, 예측
 
-loss, mse = model.evaluate(x_test, y_test)
-print('loss', loss)
-print('mse', mse)
+# loss, mse = model.evaluate(x_test, y_test)
+# print('loss', loss)
+# print('mse', mse)
 
-pred = pred.reshape(6,4,1)
-y_predict = model.predict(pred)
-print(y_predict)
+# pred = pred.reshape(6,4,1)
+# y_predict = model.predict(pred)
+# print(y_predict)
 
 
 

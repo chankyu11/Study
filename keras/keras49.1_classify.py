@@ -10,7 +10,7 @@ y= np.array([1,2,3,4,5,1,2,3,4,5])
 
 from keras.utils import np_utils
 y = np_utils.to_categorical(y)
-
+# categorical은 시작이 0부터 시작이라  1 = 0 1 0 0 0 0
 print(y)
 print(y.shape)
 

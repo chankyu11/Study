@@ -34,7 +34,6 @@ model = Model(inputs=input1, outputs=output1)
 
 model.summary()
 
-# <ValueError: Input 0 is incompatible with layer dense1_2: expected ndim=3, found ndim=2>
 # lstm 의 형태 x=(행,열,몇) 즉, (batch,time,feature) : x는 3차원
 # LSTM(n,) = dense 레이어 자체는 2차원 (행,열)만 입력 받기 때문에
 # 윗 레이어의 아웃풋이 2차원, 근데 lstm이라 3차원을 받아야 해
