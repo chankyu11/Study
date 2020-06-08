@@ -13,7 +13,7 @@ print(type(x_data))
 np.save('./data/iris_x.npy', arr = x_data)
 np.save('./data/iris_y.npy', arr = y_data)
 
-x_data_load = np.load('./dataD/iris_x.npy')
+x_data_load = np.load('./data/iris_x.npy')
 y_data_load = np.load('./data/iris_y.npy')
 
 print(type(x_data_load))
