@@ -34,9 +34,9 @@ model.fit(x_train, y_train, epochs = 30, batch_size = 1, validation_data = (x_va
 
 
 # 4. 평가와 예측
+
 loss, mse = model.evaluate(x_test, y_test, batch_size = 1)
  
-
 print("loss: ", loss)
 print("mse:", mse)
 
