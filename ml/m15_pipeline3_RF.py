@@ -45,8 +45,8 @@ parameter = [
 from sklearn.pipeline import Pipeline, make_pipeline
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 
-pipe = Pipeline([("scaler", MinMaxScaler()), ('rf', RandomForestClassifier())])
-# pipe = make_pipeline(MinMaxScaler(), RandomForestClassifier())
+# pipe = Pipeline([("scaler", MinMaxScaler()), ('rf', RandomForestClassifier())])
+pipe = make_pipeline(MinMaxScaler(), RandomForestClassifier())
 
 model = RandomizedSearchCV(pipe, parameter, cv = 5)
 

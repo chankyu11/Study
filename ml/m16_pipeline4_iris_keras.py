@@ -36,6 +36,7 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, train_size = 0.8,
 y_train = np_utils.to_categorical(y_train)
 y_test = np_utils.to_categorical(y_test)
 
+
 # 2. 모델
 
 def build_model(drop = 0.5, optimizer = 'adam'):
@@ -55,30 +56,46 @@ def build_model(drop = 0.5, optimizer = 'adam'):
     return model
 
 def create_hyperParameter():
-    batches = [32, 64, 128, 256]
-    # optimizers = ['rmsprop', 'adam', 'adadelta']
-    dropout = np.linspace(0.1, 0.5, 5)
+    batches = [32, 64, 128, 256, 512]
+    optimizers = ['rmsprop', 'adam', 'adadelta']
+    dropout = [0.2, 0.3] # np.linspace(0.1, 0.5, 5)
     epochs = [20, 40 ,60 ,80]
-    return{"rf__batch_size" : batches, "rf__epochs": epochs, "drop": dropout}
+    return{"md__batch_size" : batches, "md__epochs": epochs, 
+            "md__drop": dropout, "md__optimizer": optimizers}
 
 from keras.wrappers.scikit_learn import KerasClassifier, KerasRegressor
 # 케라스 분류 모델을 사이킷런 형태로 싸겠습니다.
 
 model = KerasClassifier(build_fn = build_model, verbose = 1)
+
+pipe = Pipeline([("scaler", MinMaxScaler()),('md', model)])
+
 hyperparameter = create_hyperParameter()
 
 from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
 
-pipe = Pipeline([("scaler", MinMaxScaler()),('rf', model)])
+
 
 search = RandomizedSearchCV(pipe, hyperparameter, cv = 3)
 search.fit(x_train, y_train)
 
 acc = search.score(x_test, y_test)
 print(search.best_params_)
-# print(search.best_estimator_)
+print(search.best_estimator_)
 
 # y_pred = model.predict(x_test)
 print("acc" , acc)
 # print("최종 정답률: ", accuracy_score(y_test, y_pred))
 
+'''
+
+{'rf__epochs': 80, 'rf__batch_size': 128}
+acc 0.9333333373069763
+
+{'md__optimizer': 'adam', 'md__epochs': 80, 'md__drop': 0.2, 'md__batch_size': 32}
+acc 0.9333333373069763
+
+{'md__optimizer': 'rmsprop', 'md__epochs': 80, 'md__drop': 0.2, 'md__batch_size': 64}
+acc 0.9333333373069763
+
+'''
