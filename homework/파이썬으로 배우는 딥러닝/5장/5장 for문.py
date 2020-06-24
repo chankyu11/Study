@@ -81,6 +81,26 @@ for x, y in enumerate("리스트형"):
 # for f , c in f.items():
 #     print(f, "is", c)
 
-town = {"경기도": "분당", "서울": "중구", "제주도": "제주시"}
-for t, c in town.items():
-    print(t,c)
+# town = {"경기도": "분당", "서울": "중구", "제주도": "제주시"}
+# for t, c in town.items():
+#     print(t,c)
+
+## 연습문제
+
+items = {"지우개": [100, 2], "펜": [200, 3], "노트": [400, 5]}
+total_price = 0
+
+
+for item in items:
+    print(item+ "은 한 개에 ", str(items[item][0]), "원이며, "+str(items[item][1]) + "개 구입합니다.")
+    total_price = items[item][0] * items[item][1]
+    print("지불해야 할 금액은" + str(total_price)+"원입니다.")
+    money = 500000
+
+    if money > total_price:
+        print("거스름돈은 "+ str(money - total_price)+"원입니다.")
+    elif money < total_price:
+        print("돈이", str(total_price - money) +"원 부족합니다.")
+    else:
+        print("거스름돈은 없습니다.")
+    
