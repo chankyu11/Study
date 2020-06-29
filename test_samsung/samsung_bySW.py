@@ -31,11 +31,11 @@ hite.loc['2020-06-02', '고가':'거래량'] = ['100', '200', '300', '400']
 
 # 삼성과 하이트의 정렬을 오름차순으로 변경
 
-hite = hite.sort_values(['일자'], ascending=[True])
-samsung = samsung.sort_values(['일자'], ascending=[True])
+# hite = hite.sort_values(['일자'], ascending=[True])
+# samsung = samsung.sort_values(['일자'], ascending=[True])
 
 # print(hite)
-
+# print(samsung)
 # 콤마 제거
 
 for i in range(len(samsung.index)):
@@ -47,10 +47,30 @@ for i in range(len(hite.index)):
     for j in range(len(hite.iloc[i])):
         hite.iloc[i, j] = int(hite.iloc[i, j].replace(',',''))
 
-# print(hite)
+hite = hite.sort_values(['일자'], ascending=[True])
+samsung = samsung.sort_values(['일자'], ascending=[True])
 
-# samsung = samsung.values
-# hite = hite.values
+print(hite)
+print(samsung)
 
-# np.save('./samsung.npy', arr = samsung)
-# np.save('./hite.npy', arr = hite)
+samsung = samsung.values
+hite = hite.values
+
+def split_xy5(ds, time_steps, y_column):
+    x, y = list(), list()
+    for i in range(len(ds)):
+        x_end_number = i + time_steps 
+        y_end_number = x_end_number + y_column
+
+        if y_end_number > len(ds):
+            break
+        tmp_x = ds[i:x_end_number, :]
+        tmp_y = ds[x_end_number:y_end_number , 0]
+        x.append(tmp_x)
+        y.append(tmp_y)
+    return np.array(x), np.array(y)
+x1, y1 = split_xy5(samsung, 5, 1)
+
+print(x1.shape)
+print(x1[:5,:])
+print(y1[:5,:])

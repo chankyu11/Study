@@ -82,21 +82,21 @@ print(samsung)
 # from sklearn.decomposition import PCA
 
 
-# def split_xy5(ds, time_steps, y_column):
-#     x, y = list(), list()
-#     for i in range(len(ds)):
-#         x_end_number = i + time_steps 
-#         y_end_number = x_end_number + y_column
+def split_xy5(ds, time_steps, y_column):
+    x, y = list(), list()
+    for i in range(len(ds)):
+        x_end_number = i + time_steps 
+        y_end_number = x_end_number + y_column
 
-#         if y_end_number > len(ds):
-#             break
-#         tmp_x = ds[i:x_end_number, :]
-#         tmp_y = ds[x_end_number:y_end_number , 0]
-#         x.append(tmp_x)
-#         y.append(tmp_y)
-#     return np.array(x), np.array(y)
-# x1, y1 = split_xy5(samsung_data, 5, 1)
-# x2, y2 = split_xy5(hite_data, 5, 1)
+        if y_end_number > len(ds):
+            break
+        tmp_x = ds[i:x_end_number, :]
+        tmp_y = ds[x_end_number:y_end_number , 0]
+        x.append(tmp_x)
+        y.append(tmp_y)
+    return np.array(x), np.array(y)
+x1, y1 = split_xy5(samsung_data, 5, 1)
+x2, y2 = split_xy5(hite_data, 5, 1)
 # print(x2[0,:], "\n", y2[0])
 # print(x1.shape) # 507 , 1, 1
 # print(y1.shape) # 507 , 1, 1
