@@ -7,6 +7,7 @@ from keras.layers import Dense, Input, LSTM
 a = np.array(range(1,11))
 size = 5    # time steps = 4
 
+x_pred = np.array([[11,12,13,14]])
 # lstm 모델 완성.
 
 def split_x(seq, size):
@@ -21,22 +22,26 @@ dataset = split_x(a, size)
 print("=========================================")
 print(dataset)
 
-# print(dataset.shape)
-# print(type(dataset))
+print(dataset.shape)
+print(type(dataset))
 
-# x = dataset[:,0:4]
-# # 0~4 즉 1,2,3,4 를 가져오겠다는 이야기
-# y = dataset[:,4]
-# #  4열을 즉 마지막 자리만 가져오겠다.
-# print(x)
-# print(y)
+x = dataset[:,0:4]
+# 0~4 즉 1,2,3,4 를 가져오겠다는 이야기
+y = dataset[:,4]
+#  4열을 즉 마지막 자리만 가져오겠다.
+print(x)
+print(y)
 
+print(x_pred)
+print(x_pred.shape)
+x_pred = x_pred.T
+print(x_pred)
+print(x_pred.shape)
 # print(x.shape)
 # print(y.shape)
-
+# print(x_pred)
 # # x = x.reshape(x.shape[0],x.shape[1],1)
 # # x = np.reshape(x,(6,4,1)) 위와 같은 문법
-# print(x.shape)
 
 # # 2. 모델
 # model = Sequential()
@@ -56,11 +61,12 @@ print(dataset)
 # es = EarlyStopping(monitor='loss', patience= 10, mode = 'auto')
 
 # model.compile(loss = 'mse', optimizer='adam', metrics=['mse'])
-# model.fit(x, y, epochs=30, batch_size=1, verbose=1, callbacks = [es])
+# model.fit(x, y, epochs=300, batch_size=1, verbose=1, callbacks = [es])
 
 # loss, mse = model.evaluate(x, y)
 
-# y_predict = model.predict(x)
+# x_pred = x_pred.reshape(1,4)
+# y_predict = model.predict(x_pred)
 # print(y_predict)
 
 # print('loss', loss)
