@@ -33,6 +33,8 @@ def split_x(seq, size):
     return np.array(aaa)
 size = 10
 
+"========================================================================"
+
 def split_xy5(ds, time_steps, y_column):
     x, y = list(), list()
     for i in range(len(ds)):
