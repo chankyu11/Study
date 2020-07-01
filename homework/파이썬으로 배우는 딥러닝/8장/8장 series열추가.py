@@ -24,9 +24,9 @@ series2 = pd.Series(data2, index=index)
 
 new_column = pd.Series([15, 7], index=[0, 1])
 
-# series1, seires2로 DataFrame을 생성합니다
+# series1, seires2로 DataFrame을 생성
 df = pd.DataFrame([series1, series2])
 
-# df에 새로운 열 "mango"를 만들어 new_column의 데이터를 추가하세요
+# df에 새로운 열 "mango"를 개설, new_column의 데이터 추가
 df["mango"] = new_column
 print(df)
