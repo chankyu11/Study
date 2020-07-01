@@ -42,7 +42,7 @@ print("mse:", mse)
 0# y_pred = model.predict(x_pred)
 # print("y_pred:", y_pred)
 
-y_predict = model.predict(x_test)
+y_predict = model.predict(x_pred)
 print(y_predict)
 
 # RMSE 구하기

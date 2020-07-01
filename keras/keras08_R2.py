@@ -52,8 +52,11 @@ def RMSE(y_te, y_predict):
     return np.sqrt(mean_squared_error(y_test, y_predict))
 print("RMSE:", RMSE(y_test, y_predict))
 
-# R2구하기
-from sklearn.metrics import r2_score
-r2 = r2_score(y_test, y_predict)
-print("R2: ", r2)
+
+print(y_test.shape)
+print(y_predict.shape)
+# # R2구하기
+# from sklearn.metrics import r2_score
+# r2 = r2_score(y_test, y_predict)
+# print("R2: ", r2)
 
