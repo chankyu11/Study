@@ -4,6 +4,7 @@ from keras.models import Sequential, Model
 from keras.layers import Input, Dropout, Conv2D, Flatten, MaxPooling2D, Dense, LSTM
 from keras.optimizers import Adam, RMSprop, SGD, Adadelta, Adagrad, Nadam
 import numpy as np
+
 # from keras.layers import LeakyReLU
 # leaky = LeakyReLU(alpha= 0.2)
 import tensorflow as tf
