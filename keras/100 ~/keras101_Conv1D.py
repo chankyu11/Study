@@ -34,12 +34,12 @@ y = dataset[:90, [-1]]
 
 print(x)
 print(y)
-print(x.shape)
-print(y.shape)
+print(x.shape)  # 90, 4
+print(y.shape)  # 90, 1
 
 
 x = x.reshape(x.shape[0],x.shape[1],1)
-print(x.shape)
+print(x.shape) # (90, 4, 1)
 
 from sklearn.model_selection import train_test_split
 
