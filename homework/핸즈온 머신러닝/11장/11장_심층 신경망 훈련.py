@@ -104,6 +104,119 @@ model_B_on_A.compile(loss="binary_crossentropy", optimizer="sgd", metrics=["accu
 
 # p.436
 # 케라스에서 모멘텀 최적화. SGD 옵티마이저를 사용 momentum에 매개변수 저장 끝
-
 optimizer = keras.optimizers.SGD(lr = 0.001, momentum = 0.9)
 
+
+# p.440
+# RMSProp 케라스에 옵티마이저 존재
+optimizer = keras.optimizers.RMSProp(lr = 0.001, rho = 0.9)
+# lr = 0.001, rho = 0.9가 기본값
+# 아주 간단한 문제를 제외하고 RMSProp가 AdaGrad보다 좋음 
+
+# p.441
+# Adam 만드는 방법
+optimizer = keras.optimizers.Adam(lr = 0.001, beta_1 = 0.9, beta_2 = 0.9)
+
+
+# p.443
+# 옵티마이저 비교
+'''
+클래스                                  수렴속도            수렴품질
+SGD                                        *                  ***
+SGD(momentum = ...)                        **                 ***
+SGD(momentum = ..., nesterov = True)       **                 ***
+Adagrad                                    ***                *(너무 일찍 멈춤)
+RMSprop                                    ***                ** 또는 ***
+Adam                                       ***                ** 또는 ***
+Nadam                                      ***                ** 또는 ***
+AdaMax                                     ***                ** 또는 ***
+
+* = 나쁨, ** = 보통, *** = 좋음
+'''
+
+# p.444
+# 학습률 스케쥴링
+
+# 학습률 스케쥴링은 훈련하는 동안 학습률을 감소시키는 전략
+
+# p.446
+# 케라스에서 거듭제곱 기반 스케쥴링이 가장 구현이 쉬움, 옵티마이저를 만들때 decay 매개변수만 지정하면 끝
+optimizer = keras.optimizers.SGD(lr = 0.01, dacay = 1e-4)
+
+# decay는 학습률을 나누기 위해 수행항 스텝수
+
+# 지수 기반 스케쥴링: 에포크를 받아 학습률을 반환하는 함수를 정의하면 끝 
+
+def exponential_dacay_fn(epoch):
+    return 0.01 * 0.1**(epoch / 20)
+
+def exponential_decay(lr0, s):
+    def exponential_decay_fn(epoch):
+        return lr0 * 0.1**(epoch / s)
+    return exponential_dacay_fn
+exponential_dacay_fn = exponential_decay(lr0=0.01, s =20)
+
+# 함수를 이렇게 정의한 후 LearningRateScheduler 콜백을 만들고 이 콜백을 fit()에 전달.
+
+lr_scheduler = keras.callbacks.LeaningRateScheduler(exponential_dacay_fn)
+history = model.fit(x_train_scaled, y_train,callbacks=[lr_scheduler])
+
+def piecewise_constant_fn(epoch):
+    if epoch < 5:
+        return 0.01
+    elif epoch < 15:
+        return 0.005
+    else:
+        return 0.001
+        
+#최상의 검증 손실이 다섯 번의 연속적인 에포크 동안 향상되지 않을 떄마다 학습률에 0.5*
+lr_scheduler = keras.callbacks.ReduceLROnPlateau(factor=0.5, patience=5)
+
+s = 20 * len(x_train) //32
+learning_rate = keras.optimizers.schedules.ExponentialDecay(0.01, s, 0.1)
+optimizer = keras.optimizers.SGD(learning_rate)
+
+# 규제를 사용해 과대적합 피하기
+# L1, L2 규제, Dropout, Max-norm 이 있음.
+
+from functools import partial
+layer = keras.layers.Dense(100, activation='elu',
+                            kernel_initializer='he_normal',
+                            kernel_regularizer=keras.regularizers.l2(0.01))
+
+# python의 partial() 함수를 사용하여 기본 매개변수 값을 사용해 함수 호출을 감쌈.
+model = keras.models.Sequential([
+    keras.layers.Flatten(input_shape=[28,28],
+    RegularizedDense(300),
+    RegularizedDense(100),
+    RegularizedDense(10, activation='softmax',
+                        kernel_initializer='glorot_uniform')
+])
+
+# p.453
+
+# 드롭아웃
+
+model = keras.models.Sequential([
+    keras.layers.Flatten(input_shape=[28,28]),
+    keras.layers.Dropout(rate=0.2),
+    keras.layers.Dense(300, activation='elu', kernel_initializer='he_normal'),
+    keras.layers.Dropout(rate=0.2),
+    keras.layers.Dense(100, activation='elu', kernel_initializer='he_normal'),
+    keras.layers.Dropout(rate=0.2),
+    keras.layers.Dense(10, activation='softmax')])
+    
+#몬테 카를로 드롭아웃 (훈련된 모델을 재훈련하거나 수정하지않고 성능을 크게향상시킬수있다.)
+y_probas = np.stack([model(x_test_scaled, training=True)
+                    for sample in range(100)])
+y_proba = y_probas.mean(axis=0)
+
+
+#배치 정규화와 같은 층을 가지고 있다면 dropout층을 다음과 같이 변경
+class MCDropout(keras.layers.Dropout):
+    def call(self, inputs):
+        return super().call(inputs, training=True)
+
+#맥스-노름 규제
+keras.layers.Dense(100, activation='elu', kernel_initializer="he_normal",
+                    kernel_constraint=keras.constraints.max_norm(1.))
