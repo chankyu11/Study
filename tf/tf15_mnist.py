@@ -11,8 +11,8 @@ print(x_train.shape)#(60000, 28, 28)
 print(y_train.shape)#(60000,)
 
 
-x_train = x_train.reshape(-1,x_train.shape[1]*x_train.shape[2])
-x_test = x_test.reshape(-1,x_test.shape[1]*x_test.shape[2])
+x_train = x_train.reshape(-1,x_train.shape[1]*x_train.shape[2]) / 255.0
+x_test = x_test.reshape(-1,x_test.shape[1]*x_test.shape[2]) / 255.0
 
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
