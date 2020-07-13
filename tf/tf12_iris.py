@@ -37,7 +37,7 @@ with tf.Session() as sess:
 
     # 최적의 W와 b가 구해져 있다
         y_pred = sess.run(hypothesis, feed_dict={x:x_test})
-        print(y_pred, sess.run(tf.argmax(y_pred, 1) + 1))
+        print(y_pred, '\n',sess.run(tf.argmax(y_pred, 1) + 1))
         
         correct_prediction = tf.equal(tf.argmax(hypothesis, 1), tf.argmax(y, 1))
 
