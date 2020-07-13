@@ -20,7 +20,7 @@ hypothesis = x_train * W + b
 cost = tf.reduce_mean(tf.square(hypothesis - y_train))
 
 train = tf.train.GradientDescentOptimizer(learning_rate = 0.01).minimize(cost)
-
+ 
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
 
