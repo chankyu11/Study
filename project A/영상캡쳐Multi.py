@@ -2,7 +2,7 @@ import cv2
 import os,shutil
 
 # opencv의 함수인 VideoCapture 함수를 사용
-main_file_path = 'D:/v'
+main_file_path = 'D:/video/'
 for m in os.listdir(main_file_path):
     for n in os.listdir(main_file_path + '/' + m):
         file_path = main_file_path + '/' + m + '/' + n
@@ -15,9 +15,9 @@ for m in os.listdir(main_file_path):
                 continue
             path = file_path + '/' + i # 폴더의 각 파일에 대한 경로
 
-            if os.path.isdir('D:/STUDY/videos/capture/' + i[:-4]):
-                shutil.rmtree('D:/STUDY/videos/capture/' + i[:-4])
-            os.mkdir('D:/STUDY/videos/capture/' + i[:-4])
+            if os.path.isdir('D:/video/' + i[:-4]):
+                shutil.rmtree('D:/video/' + i[:-4])
+            os.mkdir('D:/video/' + i[:-4])
             vidcap = cv2.VideoCapture(path)
 
             ret = True
@@ -28,7 +28,7 @@ for m in os.listdir(main_file_path):
 
                 if(int(vidcap.get(1)) % 5 == 0) : # 5프레임 당 1프레임만 저장
                     print('Saved frame number :' + str(int(vidcap.get(1))))
-                    cv2.imwrite('D:/STUDY/videos/capture/' + i[:-4] + '/' + 'frame%d.jpg' % count, image) # 새롭게 .jpg 파일로 저장
+                    cv2.imwrite('D:/video/' + i[:-4] + '/' + 'frame%d.jpg' % count, image) # 새롭게 .jpg 파일로 저장
                     print('Saved frame%d.jpg' % count)
                     count += 1
 

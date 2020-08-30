@@ -3,8 +3,8 @@ import os,shutil
 from xml.etree.ElementTree import parse
 
 # opencv의 함수인 VideoCapture 함수를 사용
-main_file_path = 'D:/v'       # 비디오 파일 위치
-main_save_path = 'D:/v/newcapture1'   # 저장할 위치
+main_file_path = 'D:/video/v'       # 비디오 파일 위치
+main_save_path = 'D:/video/capture'   # 저장할 위치
 
 count = 0
 for m in os.listdir(main_file_path):
