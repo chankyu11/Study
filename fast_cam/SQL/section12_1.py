@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Section12-1
 # 파이썬 데이터 베이스 연동(SQLite)
 # 테이블 생성 및 삽입
@@ -57,7 +56,7 @@ cursor.executemany("INSERT INTO users(id, username, email, phone, website, regda
 
 # 리소스를 사용할 때 conn.close()를 꼭 해야함
 conn.close()
-=======
+
 # Section12-1
 # 파이썬 데이터 베이스 연동(SQLite)
 # 테이블 생성 및 삽입
@@ -116,4 +115,4 @@ cursor.executemany("INSERT INTO users(id, username, email, phone, website, regda
 
 # 리소스를 사용할 때 conn.close()를 꼭 해야함
 conn.close()
->>>>>>> 667c42ee521f20fb0ad8f218b4ec214b25aaf949
+
