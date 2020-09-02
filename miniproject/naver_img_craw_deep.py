@@ -7,7 +7,7 @@ from tqdm import tqdm
 
 print("크롤링 시작")
 
-search_names = ['애니 몬스터 주식회사 설리반']
+search_names = ['증명사진']
 
 for search_name in search_names:
     
@@ -20,7 +20,7 @@ for search_name in search_names:
 
     #페이지 스크롤 다운
     body = browser.find_element_by_css_selector('body')
-    for i in range(5):
+    for i in range(10):
         body.send_keys(Keys.PAGE_DOWN)
         time.sleep(4)
 
