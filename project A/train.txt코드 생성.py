@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import glob 
 
 def file_path_save(): 
@@ -11,7 +10,7 @@ def file_path_save():
 if __name__ == '__main__': 
     file_path_save()
 
-=======
+
 import glob 
 
 def file_path_save(): 
@@ -24,4 +23,3 @@ def file_path_save():
 if __name__ == '__main__': 
     file_path_save()
 
->>>>>>> 667c42ee521f20fb0ad8f218b4ec214b25aaf949
