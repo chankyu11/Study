@@ -8,3 +8,10 @@ class Solution:
             else:
                 return [nd[target - nums[i]], i]
             
+            
+            
+#         for i in range(len(nums)):
+#             for j in range(len(nums) + 1):
+#                 if nums[i] + nums[j] == target:
+#                     return [i, j]
+                
