@@ -1,5 +1,3 @@
-import collections
-import re
 
 class Solution:
     def mostCommonWord(self, paragraph: str, banned: List[str]) -> str:
