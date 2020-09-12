@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import numpy as np
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.models import Sequential
@@ -79,8 +79,7 @@ for row_num, row in enumerate(axes):
 
 plt.show()
 
- 
-=======
+
 import numpy as np
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.models import Sequential
@@ -161,5 +160,3 @@ for row_num, row in enumerate(axes):
 
 plt.show()
 
- 
->>>>>>> 667c42ee521f20fb0ad8f218b4ec214b25aaf949

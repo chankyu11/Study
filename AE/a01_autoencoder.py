@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # 앞뒤가 똑같은 오토인코더 = x가 인풋이면 x도 아웃풋
 # 대한민국 축구대표팀. 좋은 경험이었다? --> 그 과정에서 특징을 추출함
 # 특징을 추출한다? 어디서 배웠지? PCA(차원축소, 압축)
@@ -74,7 +74,7 @@ for i in range(n):
     ax.get_yaxis().set_visible(False)
     
 plt.show()
-=======
+
 # 앞뒤가 똑같은 오토인코더 = x가 인풋이면 x도 아웃풋
 # 대한민국 축구대표팀. 좋은 경험이었다? --> 그 과정에서 특징을 추출함
 # 특징을 추출한다? 어디서 배웠지? PCA(차원축소, 압축)
@@ -131,7 +131,7 @@ autoencoder.fit(x_train, x_train, epochs=50, batch_size=256, validation_split=0.
 #4. 평가, 예측
 decoded_img = autoencoder.predict(x_test)
 
-#4. 시각화
+# 4. 시각화
 
 n=10
 plt.figure(figsize=(20,4))
@@ -150,5 +150,4 @@ for i in range(n):
     ax.get_yaxis().set_visible(False)
     
 plt.show()
->>>>>>> 667c42ee521f20fb0ad8f218b4ec214b25aaf949
     
