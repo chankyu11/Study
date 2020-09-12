@@ -85,6 +85,6 @@ print("acc: ", acc)
 
 pred = pred.reshape(1,10,6)
 y_pred = model.predict(pred)
-# y_pred = np.argmax(y_pred, axis = 1)
+# y_pred = np.argmax(y_pred)
 print(np.around(y_pred))
-# print(y_pred)
+print(y_pred)

@@ -66,7 +66,7 @@ loss, mse = model.evaluate(x_test, y_test)
 print('loss', loss)
 print('mse', mse)
 
-pred = pred.reshape(1,10,6)
+# pred = pred.reshape(1,10,6)
 y_predict = model.predict(pred)
 print(np.around(y_predict))
 
