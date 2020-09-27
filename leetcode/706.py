@@ -1,3 +1,9 @@
+class ListNode:
+    def __init__(self, key: int = None, value:int = None, next:ListNode = None):
+        self.key = key
+        self.value = value
+        self.next =next
+        
 class MyHashMap:
     
     def __init__(self):
