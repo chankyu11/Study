@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import glob, os, shutil
 from xml.etree.ElementTree import parse
  
@@ -38,7 +38,7 @@ def file_path_save():
 if __name__ == '__main__': file_path_save()
  
 
-=======
+
 import glob, os, shutil
 from xml.etree.ElementTree import parse
  
@@ -77,5 +77,3 @@ def file_path_save():
  
 if __name__ == '__main__': file_path_save()
  
-
->>>>>>> 667c42ee521f20fb0ad8f218b4ec214b25aaf949

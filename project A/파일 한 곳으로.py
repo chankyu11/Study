@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import cv2
 import os,shutil
 from xml.etree.ElementTree import parse
@@ -27,7 +27,7 @@ for m in os.listdir(main_file_path):
         #             shutil.copy(src=file_path + '/' + i, dst= main_save_path + '/' + i)
  
 
-=======
+
 import cv2
 import os,shutil
 from xml.etree.ElementTree import parse
@@ -56,4 +56,3 @@ for m in os.listdir(main_file_path):
         #             shutil.copy(src=file_path + '/' + i, dst= main_save_path + '/' + i)
  
 
->>>>>>> 667c42ee521f20fb0ad8f218b4ec214b25aaf949
