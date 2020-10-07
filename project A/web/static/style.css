@@ -9,14 +9,14 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: url("../static/img/camera.jpg") no-repeat center top;
+    background: url("D:/web/static/img/camera.jpg") no-repeat center top;
     background-size: cover;
 }
 body::before {
     content: "";
     position: absolute; z-index: 1;
     top: 0; right: 0; bottom: 0; left: 0;
-    background-color: rgba(0,0,0,.7);
+    background-color:rgba(0,0,0,.1);
 }
 
 .login-form {position: relative; z-index: 2;}

@@ -4,11 +4,14 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Warning!!</title>
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" href="../static/style_camera.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 <body>
-    <img src="{{ url_for('video_feed') }}?id={{row[0]}}" />
-    <h2><a href = "/templates/tmp.html"> 돌아가자 </a></h2>
+    <section class = "video">
+        <img src="{{ url_for('video_feed') }}?id={{row[0]}}"/>
+    </section>
+    
 </body>
 </html>
  

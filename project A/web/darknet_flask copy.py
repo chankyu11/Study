@@ -10,11 +10,16 @@ config_path = "D:/python_module/darknet-master/build\darknet/x64/project/myyolov
 weigh_path = "D:/python_module/darknet-master/build/darknet/x64/project/backup/myyolov3_final.weights"
 meta_path = "D:/python_module/darknet-master/build\darknet/x64/project/my.data"
 video_path = "D:/python_module/darknet-master/build\darknet/x64/project/22-2.mp4"
-threshold = 0.25
+threshold = 0.8
 
 video1 = "D:/python_module/darknet-master/build\darknet/x64/project/22-2.mp4"
 video2 = "D:/python_module/darknet-master/build\darknet/x64/project/26-4.mp4"
-
+video3 = "D:/python_module/darknet-master/build\darknet/x64/project/7-5-1.mp4"
+video4 = "D:/python_module/darknet-master/build\darknet/x64/project/22-3.mp4"
+video5 = "D:/python_module/darknet-master/build\darknet/x64/project/22-4.mp4"
+video6 = "D:/python_module/darknet-master/build\darknet/x64/project/22-5.mp4"
+video7 = "D:/python_module/darknet-master/build\darknet/x64/project/12-1.mp4"
+video8 = "D:/python_module/darknet-master/build\darknet/x64/project/10-1.mp4"
 #2. 관련 파일 load
 # cfg(모델관련)와 weight 파일 아스키코드로 load
 net = darknet.load_net(bytes(config_path, "ascii"), bytes(weigh_path, "ascii"), 0) 
@@ -64,10 +69,8 @@ def gen(camera):
     while True:
         i += 1
         image = camera.read()
-        image = cv2.resize(image, dsize=(640, 480), interpolation=cv2.INTER_AREA)
-        print(i)
-        # if not ret: 
-            # break 
+        image = cv2.resize(image, dsize=(1024, 768), interpolation=cv2.INTER_AREA)
+         
         frame = darknet.nparray_to_image(image)
         r = darknet.detect_image(net, meta, frame, thresh=.5, hier_thresh=.5, nms=.45, debug= False)
         print(r)
@@ -84,8 +87,7 @@ def gen(camera):
             mytexts = r[k][0]
             mythresh = r[k][1] 
             boxes.append((x, y, w, h, mytexts, mythresh))
-        print(1)
-
+        print("===" * 50)
 
 
         for k in range(len(boxes)): 
@@ -98,11 +100,11 @@ def gen(camera):
             
             if texts.decode('utf-8') == 'normal':
                 cv2.rectangle(image, (top, left), (right, bottom), (255, 0, 0), 2)
-                cv2.putText(image, texts.decode('utf-8') + '('+ str(threshs*100)[:5] + '%)', (top, left-5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0))
+                cv2.putText(image, texts.decode('utf-8') + '('+ str(threshs*100)[:5] + '%)', (top, left-5), cv2.FONT_HERSHEY_COMPLEX, 0.7, (255, 0, 0))
             
             elif texts.decode('utf-8') == 'fighting':
                 cv2.rectangle(image, (top, left), (right, bottom), (0, 0, 255), 2)
-                cv2.putText(image, texts.decode('utf-8') + '('+ str(threshs*100)[:5] + '%)', (top, left-5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255))
+                cv2.putText(image, texts.decode('utf-8') + '('+ str(threshs*100)[:5] + '%)', (top, left-5), cv2.FONT_HERSHEY_COMPLEX, 0.7, (0, 0, 255))
 
         ret, jpeg = cv2.imencode('.jpg', image)
         darknet.free_image(frame) ## darknet에서 쓰는 c언어 동적할당 해제해주는 함수(써주어야 메모리가 버틴다.)
@@ -114,7 +116,7 @@ def gen(camera):
             print("frame is none")
 
  
-video = [(1,video1), (2,video2)]
+video = [(1, video1), (2, video2), (3, video3), (4, video4), (5, video5), (6, video6), (7, video7), (8, video8)]
 app = Flask(__name__)
 
 
@@ -172,3 +174,7 @@ def video_feed():
 
 if __name__ == '__main__':
        app.run(host='127.0.0.1', debug=True, threaded=True)
+
+
+
+
