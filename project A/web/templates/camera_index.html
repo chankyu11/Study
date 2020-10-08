@@ -1,21 +1,16 @@
 <html> 
     <head>
-        
-    <h1> video list </h1>
+    <link rel="stylesheet" href="../static/style_c_index.css">   
+    
 
     </head>
     <body>
-        
+        <p class="font" style="color:white;">video list </p>
         {%for row in rows%}
-
-        <!--video = [(1,video1), (2,video2)]-->
-
-        <!-- <a>태그 anchor 정박지, 닻의 의미로 혼자만 사용하지 않고 다른 속성과 함께 사용 -->
-        <!-- href==연결할 주소를 지정하는 속성, 딕셔너리 형태 -->
         
         <a class ="btn" href = '/index?id={{row[0]}}'>
             <button class="btn">
-            <img class="btn-img" src="static\img\monitor.png" height=250 width=300><br>
+            <img class="btn-img" src="static\img\monitor.png" height=330 width=400><br>
             영상{{row[0]}}
 			</button>
         </a>
