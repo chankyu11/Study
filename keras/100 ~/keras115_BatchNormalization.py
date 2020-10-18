@@ -1,3 +1,5 @@
+
+
 #### 과적합 막는 법 #####
 # 훈련데이터 늘린다.
 # feature를 늘린다
@@ -21,6 +23,22 @@ from keras.layers import Dense, LSTM, Conv2D
 from keras.layers import Flatten, MaxPooling2D, Dropout, Input, BatchNormalization, Activation
 from keras.optimizers import Adam
 import matplotlib.pyplot as plt
+import tensorflow as tf 
+
+gpus = tf.config.experimental.list_physical_devices('GPU')
+if gpus:
+    try:
+        # Restrict TensorFlow to only use the fourth GPU
+        tf.config.experimental.set_visible_devices(gpus[0], 'GPU')
+
+        # Currently, memory growth needs to be the same across GPUs
+        for gpu in gpus:
+            tf.config.experimental.set_memory_growth(gpu, True)
+        logical_gpus = tf.config.experimental.list_logical_devices('GPU')
+        print(len(gpus), "Physical GPUs,", len(logical_gpus), "Logical GPUs")
+    except RuntimeError as e:
+        # Memory growth must be set before GPUs have been initialized
+        print(e)
 
 #1. data
 (x_train, y_train),(x_test, y_test) = cifar10.load_data()
