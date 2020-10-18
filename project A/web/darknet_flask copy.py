@@ -7,7 +7,8 @@ from darknet import darknet
  
 #1. 사용할 변수 선언
 config_path = "D:/python_module/darknet-master/build\darknet/x64/project/myyolov3.cfg"
-weigh_path = "D:/python_module/darknet-master/build/darknet/x64/project/backup/myyolov3_final.weights"
+# weigh_path = "D:/python_module/darknet-master/build/darknet/x64/project/backup/myyolov3_final.weights"
+weigh_path = "D:/python_module/darknet-master/build/darknet/x64/project/backup/myyolov3_last.weights"
 meta_path = "D:/python_module/darknet-master/build\darknet/x64/project/my.data"
 video_path = "D:/python_module/darknet-master/build\darknet/x64/project/22-2.mp4"
 threshold = 0.8
@@ -69,7 +70,7 @@ def gen(camera):
     while True:
         i += 1
         image = camera.read()
-        image = cv2.resize(image, dsize=(1024, 768), interpolation=cv2.INTER_AREA)
+        image = cv2.resize(image, dsize=(1152, 864), interpolation=cv2.INTER_AREA)
          
         frame = darknet.nparray_to_image(image)
         r = darknet.detect_image(net, meta, frame, thresh=.5, hier_thresh=.5, nms=.45, debug= False)
@@ -99,12 +100,12 @@ def gen(camera):
             # cv2.rectangle(image, (top, left), (right, bottom), (0, 255, 0), 1)
             
             if texts.decode('utf-8') == 'normal':
-                cv2.rectangle(image, (top, left), (right, bottom), (255, 0, 0), 2)
-                cv2.putText(image, texts.decode('utf-8') + '('+ str(threshs*100)[:5] + '%)', (top, left-5), cv2.FONT_HERSHEY_COMPLEX, 0.7, (255, 0, 0))
+                cv2.rectangle(image, (top, left), (right, bottom), (221, 160, 221), 2)
+                cv2.putText(image, texts.decode('utf-8') + '('+ str(threshs*100)[:5] + '%)', (top, left-5), cv2.FONT_HERSHEY_COMPLEX, 0.8, (221, 160, 221))
             
             elif texts.decode('utf-8') == 'fighting':
                 cv2.rectangle(image, (top, left), (right, bottom), (0, 0, 255), 2)
-                cv2.putText(image, texts.decode('utf-8') + '('+ str(threshs*100)[:5] + '%)', (top, left-5), cv2.FONT_HERSHEY_COMPLEX, 0.7, (0, 0, 255))
+                cv2.putText(image, texts.decode('utf-8') + '('+ str(threshs*100)[:5] + '%)', (top, left-5), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255, 255, 255))
 
         ret, jpeg = cv2.imencode('.jpg', image)
         darknet.free_image(frame) ## darknet에서 쓰는 c언어 동적할당 해제해주는 함수(써주어야 메모리가 버틴다.)
@@ -173,7 +174,7 @@ def video_feed():
  
 
 if __name__ == '__main__':
-       app.run(host='127.0.0.1', port = 8015, debug=True, threaded=True)
+       app.run(host='127.0.0.1', port = 5100, debug=True, threaded=True)
 
 
 
