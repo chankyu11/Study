@@ -9,8 +9,6 @@ from keras.layers import Dense
 model = Sequential()
 model.add(Dense(1, input_dim = 1, activation = 'relu'))
 
-model = Sequential()
-model.add(Dense(1, input_dim = 1))
 
 model.compile(loss = 'mean_squared_error', optimizer = 'adam', metrics = ['accuracy'])
 
