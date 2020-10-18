@@ -1,5 +1,22 @@
 from keras.preprocessing.text import Tokenizer
 import numpy as np
+import tensorflow as tf
+
+gpus = tf.config.experimental.list_physical_devices('GPU')
+
+if gpus:
+    try:
+        # Restrict TensorFlow to only use the fourth GPU
+        tf.config.experimental.set_visible_devices(gpus[0], 'GPU')
+
+        # Currently, memory growth needs to be the same across GPUs
+        for gpu in gpus:
+            tf.config.experimental.set_memory_growth(gpu, True)
+        logical_gpus = tf.config.experimental.list_logical_devices('GPU')
+        print(len(gpus), "Physical GPUs,", len(logical_gpus), "Logical GPUs")
+    except RuntimeError as e:
+        # Memory growth must be set before GPUs have been initialized
+        print(e)
 
 docs = ["너무 재밌어요", "참 최고에요", "참 잘 만든 영화네요",
         '추천하고 싶은 영화입니다', ' 한 번 더 보고 싶네요', '글쌔요',
@@ -75,20 +92,20 @@ from keras.models import Sequential
 from keras.layers import Dense, Embedding, Flatten
 
 model = Sequential()
-# model.add(Embedding(25, 10, input_length = 5))   # (none, 5, 10)
+model.add(Embedding(25, 10, input_length = 5))   # (none, 5, 10)
 # Embedding은 두 번째 들어간다.
 # 10은 노드 사이즈이다. 몇을 넣던지 상관없다.
 # 통상적으로 단어의 수만큼 노드 사이즈를 넣어준다.
-model.add(Embedding(25, 10))
+# model.add(Embedding(25, 10))
 
-# model.add(Flatten())
+model.add(Flatten())
 model.add(Dense(1, activation = 'sigmoid'))
 
 model.summary()
 
-# model.compile(optimizer = 'adam', loss = 'binary_crossentropy',
-#               metrics = ['acc'])
-# model.fit(pad_x, labels, epochs = 30)
+model.compile(optimizer = 'adam', loss = 'binary_crossentropy',
+              metrics = ['acc'])
+model.fit(pad_x, labels, epochs = 30)
 
-# acc = model.evaluate(pad_x, labels)[1]
-# print("acc: ", acc)
+acc = model.evaluate(pad_x, labels)[1]
+print("acc: ", acc)
