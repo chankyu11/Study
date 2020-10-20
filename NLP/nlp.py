@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # 핸드온 머신러닝 p.629
 
 import numpy as np
@@ -33,7 +33,7 @@ datasets_size = tokenizer.document_count # 전체 글자 개수
 # print(datasets_size)
 
 encoded = np.array(tokenizer.texts_to_sequences([shakespeare_txt])) - 1
-=======
+
 # 핸드온 머신러닝 p.629
 
 import numpy as np
@@ -68,5 +68,5 @@ datasets_size = tokenizer.document_count # 전체 글자 개수
 # print(datasets_size)
 
 encoded = np.array(tokenizer.texts_to_sequences([shakespeare_txt])) - 1
->>>>>>> 667c42ee521f20fb0ad8f218b4ec214b25aaf949
+
 # print(encoded)
