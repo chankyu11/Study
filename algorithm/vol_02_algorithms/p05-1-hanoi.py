@@ -5,6 +5,7 @@
 #      옮기는 과정에서 사용할 보조 기둥 aux_pos
 # 출력: 원반을 옮기는 순서 
 
+
 def hanoi(n, from_pos, to_pos, aux_pos):
     if n == 1:  # 원반 한 개를 옮기는 문제면 그냥 옮기면 됨
         print(from_pos, "->", to_pos)

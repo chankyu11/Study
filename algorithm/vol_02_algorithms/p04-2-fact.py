@@ -2,6 +2,7 @@
 # 입력: n
 # 출력: 1부터 n까지 연속한 숫자를 곱한 값
 
+
 def fact(n):
     if n <= 1:
         return 1
