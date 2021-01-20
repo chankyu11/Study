@@ -2,6 +2,7 @@
 # 입력: 리스트 a
 # 출력: 없음(입력으로 주어진 a가 정렬됨)
 
+
 def sel_sort(a):
     n = len(a)
     for i in range(0, n - 1):  # 0부터 n-2까지 반복
