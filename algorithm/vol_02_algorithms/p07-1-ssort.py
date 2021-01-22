@@ -19,5 +19,5 @@ def sel_sort(a):
         result.append(value)     # value를 결과 리스트 끝에 추가
     return result
 
-d = [2, 4, 5, 1, 3]
+d = [3, 4, 5, 1, 2]
 print(sel_sort(d))
