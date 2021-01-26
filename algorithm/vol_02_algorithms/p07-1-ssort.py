@@ -11,7 +11,6 @@ def find_min_idx(a):
             min_idx = i
     return min_idx
 
-
 def sel_sort(a):
     result = []  # 새 리스트를 만들어 정렬된 값을 저장
     while a:     # 주어진 리스트에 값이 남아있는 동안 계속
