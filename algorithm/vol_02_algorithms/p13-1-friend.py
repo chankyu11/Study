@@ -17,7 +17,6 @@ def print_all_friends(g, start):
                 qu.append(x)   # 큐에 추가하고
                 done.add(x)    # 집합에도 추가
 
-# 친구 관계 리스트
 # A와 B가 친구이면
 # A의 친구 리스트에도 B가 나오고, B의 친구 리스트에도 A가 나옴
 fr_info = {
