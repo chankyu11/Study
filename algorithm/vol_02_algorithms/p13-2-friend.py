@@ -17,6 +17,7 @@ def print_all_friends(g, start):
                 qu.append((x, d + 1))  # 친밀도를 1 증가시켜 큐에 추가하고
                 done.add(x)            # 집합에도 추가
 
+                
 fr_info = {
     'Summer': ['John', 'Justin', 'Mike'],
     'John': ['Summer', 'Justin'],
